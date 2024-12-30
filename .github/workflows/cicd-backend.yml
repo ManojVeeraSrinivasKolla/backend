@@ -68,4 +68,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-     
+      - name: Build and tag Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/movie_review:latest .
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
