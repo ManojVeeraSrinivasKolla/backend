@@ -1,6 +1,3 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code, and run tests across different versions of Node.js
-# For more information, see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
 name: Node.js CI
 
 on:
@@ -19,7 +16,6 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: [20.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
       - name: Checkout code
@@ -39,7 +35,7 @@ jobs:
         uses: actions/cache@v4
         id: npm-cache
         with:
-          path: ${{ env.dir }} # Correctly referencing the directory to cache
+          path: ${{ env.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
@@ -81,15 +77,16 @@ jobs:
     runs-on: self-hosted
     environment: movie_review_backend
     steps:
-      - name: pull image from the docker hub
+      - name: Pull image from the Docker hub
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
 
       - name: Run pulled image
-        run: docker run -d -p 8000:8000 \
+        run: |
+          docker run -d -p 8000:8000 \
             -e PORT=${{ secrets.PORT }} \
             -e MONGO_URI=${{ secrets.MONGO_URI }} \
             -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
             -e CLOUDINARY_NAME=${{ secrets.CLOUDINARY_NAME }} \
             -e CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} \
-            -e CLOUDINARY_SECRET_KEY=${{ secrets.CLOUDINARY_SECRET_KEY }}
+            -e CLOUDINARY_SECRET_KEY=${{ secrets.CLOUDINARY_SECRET_KEY }} \
             ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
