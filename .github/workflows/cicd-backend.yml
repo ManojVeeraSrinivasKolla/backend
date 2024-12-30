@@ -83,7 +83,8 @@ jobs:
     steps:
       - name: pull image from the docker hub
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
-
+      - name: Remove previous container
       - name: Run pulled image
+        run: docker rm -f my_mv_server
         run: |
-          docker run -d -p 8000:8000 -e PORT=${{ secrets.PORT }} -e MONGO_URI="${{ secrets.MONGO_URI }}" -e JWT_SECRET="${{ secrets.JWT_SECRET }}" -e CLOUDINARY_NAME="${{ secrets.CLOUDINARY_NAME }}" -e CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} -e CLOUDINARY_SECRET_KEY="${{ secrets.CLOUDINARY_SECRET_KEY }}" ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
+          docker run -d -p 8000:8000 --name my_mv_server -e PORT=${{ secrets.PORT }} -e MONGO_URI="${{ secrets.MONGO_URI }}" -e JWT_SECRET="${{ secrets.JWT_SECRET }}" -e CLOUDINARY_NAME="${{ secrets.CLOUDINARY_NAME }}" -e CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} -e CLOUDINARY_SECRET_KEY="${{ secrets.CLOUDINARY_SECRET_KEY }}" ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
