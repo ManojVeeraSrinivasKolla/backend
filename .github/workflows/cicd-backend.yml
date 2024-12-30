@@ -75,3 +75,19 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: pull image from the docker hub
+        run: docker pull ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
+
+      - name: Run pulled image
+        run: docker run -d -p 8000:8000 \
+            -e PORT=${{ secrets.PORT }} \
+            -e MONGO_URI=${{ secrets.MONGO_URI }} \
+            -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
+            -e CLOUDINARY_NAME=${{ secrets.CLOUDINARY_NAME }} \
+            -e CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} \
+            -e CLOUDINARY_SECRET_KEY=${{ secrets.CLOUDINARY_SECRET_KEY }}
