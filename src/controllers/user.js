@@ -4,6 +4,7 @@ const ResetPassword = require("../models/resetPassword");
 const { isValidObjectId } = require("mongoose");
 const { generateOTP, generateMailTransporter } = require("../utils/mail");
 const { generateRandomBytes } = require("../utils/helper");
+require("regenerator-runtime/runtime");
 
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");

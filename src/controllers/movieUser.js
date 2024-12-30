@@ -1,6 +1,7 @@
 const { isValidObjectId } = require("mongoose");
 const Movie = require("../models/movie");
 const Review = require("../models/review");
+require("regenerator-runtime/runtime");
 const {
    averageRatingPipeline,
    relatedMoviesPipeline,

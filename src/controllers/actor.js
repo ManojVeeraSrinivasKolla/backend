@@ -1,6 +1,7 @@
 const { isValidObjectId } = require("mongoose");
 const Actor = require("../models/actor");
 const cloudinary = require("cloudinary").v2;
+require("regenerator-runtime/runtime");
 
 // Configuration
 cloudinary.config({

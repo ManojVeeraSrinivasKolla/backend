@@ -2,6 +2,7 @@ const { isValidObjectId } = require("mongoose");
 const Review = require("../models/review");
 const Movie = require("../models/movie");
 const { getAvgRatings } = require("../utils/helper");
+require("regenerator-runtime/runtime");
 
 const postReview = async (req, res) => {
    const { content, rating } = req.body;

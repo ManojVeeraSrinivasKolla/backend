@@ -1,7 +1,7 @@
 const Movie = require("../models/movie");
 const User = require("../models/user");
 const Review = require("../models/review");
-
+require("regenerator-runtime/runtime");
 const getStats = async (req, res) => {
    const movieCount = await Movie.countDocuments();
    const reviewCount = await Review.countDocuments();

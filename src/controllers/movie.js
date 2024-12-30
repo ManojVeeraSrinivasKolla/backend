@@ -1,7 +1,7 @@
 const { isValidObjectId } = require("mongoose");
 const Movie = require("../models/movie");
 const { getAvgRatings } = require("../utils/helper");
-
+require("regenerator-runtime/runtime");
 const cloudinary = require("cloudinary").v2;
 
 // Configuration
