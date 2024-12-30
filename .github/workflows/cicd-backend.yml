@@ -72,12 +72,12 @@ jobs:
         run: |
           docker push ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
 
-  deploy:
+    deploy:
     needs: build
     runs-on: self-hosted
     environment: movie_review_backend
     steps:
-      - name: Pull image from the Docker hub
+      - name: Pull image from Docker hub
         run: docker pull ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
 
       - name: Run pulled image
