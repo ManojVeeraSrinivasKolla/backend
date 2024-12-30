@@ -86,11 +86,11 @@ jobs:
 
       - name: Run pulled image
         run: |
-          docker run -d -p 8000:8000 \
+         docker run -d -p 8000:8000 \
             -e PORT=${{ secrets.PORT }} \
             -e MONGO_URI=${{ secrets.MONGO_URI }} \
+            -e CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} \
             -e JWT_SECRET=${{ secrets.JWT_SECRET }} \
             -e CLOUDINARY_NAME=${{ secrets.CLOUDINARY_NAME }} \
-            -e CLOUDINARY_API_KEY=${{ secrets.CLOUDINARY_API_KEY }} \
             -e CLOUDINARY_SECRET_KEY=${{ secrets.CLOUDINARY_SECRET_KEY }} \
             ${{ secrets.DOCKER_USERNAME }}/movie_review:latest
