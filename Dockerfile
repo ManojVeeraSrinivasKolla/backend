@@ -31,4 +31,4 @@ ENV CLOUDINARY_SECRET_KEY=${CLOUDINARY_SECRET_KEY}
 
 
 # Command to run your app inside the container (this assumes your built app is in dist/)
-CMD ["node", "dist/index.js"]
+CMD ["node", "dist/app.js"]
