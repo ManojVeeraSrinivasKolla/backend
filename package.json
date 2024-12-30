@@ -9,7 +9,7 @@
     "start": "node app.js",
     "build": "npm run clean && npm run transpile",
     "clean": "rimraf dist",
-    "transpile": "babel src --out-dir dist --copy-files"
+    "transpile": "babel . --out-dir dist --copy-files"
   },
   "keywords": [],
   "author": "",
