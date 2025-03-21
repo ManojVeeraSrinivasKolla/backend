@@ -17,7 +17,7 @@ const createUser = async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email: email });
     if (existingUser) {
-      return res.status(409).json({ error: "User email already exists" }); // Conflicting email
+      return res.status(409).json({ error: "User email already exists" }); // Conflicting emaill
     }
 
     const newUser = new User({
