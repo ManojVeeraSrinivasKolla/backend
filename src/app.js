@@ -46,5 +46,5 @@ async function start() {
    await mongoose.connect(process.env.MONGO_URI);
 }
 start()
-   .then(() => console.log("Connection to MONGODB established Successully"))
+   .then(() => console.log("Connection to MONGODB established Successullly"))
    .catch((error) => console.log("connection to the DB failed" + error));
